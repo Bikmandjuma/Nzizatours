@@ -68,6 +68,7 @@ class AdminController extends Controller
 
     public function Post_Password(Request $request){
         # Validation
+        
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed|min:8|max:100',
