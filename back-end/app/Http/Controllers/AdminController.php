@@ -73,7 +73,6 @@ class AdminController extends Controller
             'new_password' => 'required|confirmed|min:8|max:100',
         ]);
 
-
         #Match The Old Password
         if(!Hash::check($request->old_password, auth()->guard('admin')->user()->password)){
             return back()->with("error", "Old Password Doesn't match!");

@@ -5,6 +5,16 @@
             <div class="col-md-2 col-xl-4"></div>
             <div class="col-md-2 col-xl-4">
 
+                @if ($errors->any())
+                    <div class="alert bg-danger" style="text-align: center;"> <button style="position:relative;margin-top: -5px;margin-right:-3px;" aria-hidden="true" data-dismiss="alert" class="close text-white" type="button">&times;</button>
+                        <ul style="list-style-type:decimal;">
+                            @foreach ($errors->all() as $error)
+                                <li><strong>{{ $error }}</strong></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 @if(session('status'))
                     <div class="alert bg-success" style="text-align: center;"> <button aria-hidden="true" data-dismiss="alert" class="close text-white" type="button">&times;</button>
                       <strong>{{session('status')}}</strong>
@@ -54,4 +64,88 @@
             <div class="col-md-2 col-xl-4"></div>
         </div>
     </div>
+
+     <script>
+        //old_password hiding/show
+        function old_ShowPswdFn1(){
+          var x=document.getElementById('old_pswdid1');
+
+          if (x.type === "password") {
+            x.type = "text";
+            document.getElementById('old_ShowPswdSlash1').style.display="block";
+            document.getElementById('old_ShowPswd1').style.display="none";
+          }else{
+            x.type="password";
+          }
+
+        }
+
+        function old_ShowPswdFn11(){
+          var x=document.getElementById('old_pswdid1');
+
+          if (x.type === "text") {
+            x.type = "password";
+            document.getElementById('old_ShowPswdSlash1').style.display="none";
+            document.getElementById('old_ShowPswd1').style.display="block";
+          }else{
+            x.type="password";
+          }
+
+        }
+
+        //New password hiding/show
+        function new_ShowPswdFn1(){
+          var x=document.getElementById('new_pswdid1');
+
+          if (x.type === "password") {
+            x.type = "text";
+            document.getElementById('new_ShowPswdSlash1').style.display="block";
+            document.getElementById('new_ShowPswd1').style.display="none";
+          }else{
+            x.type="password";
+          }
+
+        }
+
+        function new_ShowPswdFn11(){
+          var x=document.getElementById('new_pswdid1');
+
+          if (x.type === "text") {
+            x.type = "password";
+            document.getElementById('new_ShowPswdSlash1').style.display="none";
+            document.getElementById('new_ShowPswd1').style.display="block";
+          }else{
+            x.type="password";
+          }
+
+        }
+
+        //Confirm New password hiding/show
+        function conf_new_ShowPswdFn1(){
+          var x=document.getElementById('conf_new_pswdid1');
+
+          if (x.type === "password") {
+            x.type = "text";
+            document.getElementById('conf_new_ShowPswdSlash1').style.display="block";
+            document.getElementById('conf_new_ShowPswd1').style.display="none";
+          }else{
+            x.type="password";
+          }
+
+        }
+
+        function conf_new_ShowPswdFn11(){
+          var x=document.getElementById('conf_new_pswdid1');
+
+          if (x.type === "text") {
+            x.type = "password";
+            document.getElementById('conf_new_ShowPswdSlash1').style.display="none";
+            document.getElementById('conf_new_ShowPswd1').style.display="block";
+          }else{
+            x.type="password";
+          }
+
+        }
+
+    </script>
 @endsection
