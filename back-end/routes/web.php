@@ -34,9 +34,6 @@ Route::get('login','App\Http\Controllers\AuthController@GetLogin')->name('Login'
 Route::post('Submit_login_data', 'App\Http\Controllers\AuthController@PostLogin')->name('LoginPost');
 Route::post('logout', 'App\Http\Controllers\AuthController@Logout')->name('Logout');
 
-//Citizen route to send his/her complains
-Route::post('send-complains', 'App\Http\Controllers\CitizensController@CitizenComplains')->name('send_complains');
-
 //Admin routing
 Route::group(['prefix' => 'admin','middleware' => 'adminauth'], function () {
 	Route::get('dashboard',[AdminController::class,'dashboard'])->name('AdminDashboard');

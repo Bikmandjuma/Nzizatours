@@ -14,6 +14,39 @@
       display:absolute;margin-top:25px;border-radius:10px;align-items: center;justify-content: center;justify-items: center;
     }
 
+  div#online-indicator_attendant {
+/*        display: inline-block;*/
+        position: absolute;
+        z-index:20;
+        width: 17px;
+        height: 17px;
+        margin-right:10px;
+        margin-left: 172px;
+        background-color:skyblue;
+        border-radius: 50%;
+        position: absolute;
+        margin-top: -20px;
+      }
+
+      div#online-indicator_attendant:hover{
+        cursor:alias;
+      }
+      span.blink_attendant {
+        display: block;
+        width: 17px;
+        height: 17px;
+        background-color:blue;
+        opacity: 0.7;
+        border-radius: 50%;
+        animation: blink 1s linear infinite;
+      }
+
+      /*Animations*/
+      @keyframes blink {
+        100% { transform: scale(2, 2); 
+                opacity: 0;
+              }
+      }
 </style>
 	<div class="page-body">
         <div class="row">
@@ -23,9 +56,9 @@
 
             <div class="col-md-8 col-xl-8">
                 @if(session('success'))
-                  <p class="text-success">
-                    {{session('success')}}
-                  </p>
+                  <script>toastr.success('Data inserted successfully !');</script>
+                    <!-- {{session('success')}} -->
+        
                 @endif
                 <div class="card">
                   <div class="card-header text-center" style="box-shadow:0 4px 8px 0 rgb(0, 0, 0, 0.2);"><h4><i class="fa fa-address-card"></i>&nbsp;My information</h4></div>
@@ -34,6 +67,9 @@
                     <div class="row">
                         <div class="col-md-6 text-center">
                             <img src="../assets/images/{{auth()->guard('admin')->user()->image}}" class="img-circle elevation-2" alt="User Image" style="width:100px;height:100px;border-radius:50%;border:1px solid skyblue;z-index: 1;display: relative;margin-top:5px; " onclick="window.location.href='{{route("Profile")}}'">
+                            <div id='online-indicator_attendant' title='Online'>
+                                <span class='blink_attendant'></span>
+                            </div>
                         </div>
 
                         <div class="col-sm-6">

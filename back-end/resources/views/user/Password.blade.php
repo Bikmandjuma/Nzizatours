@@ -1,5 +1,12 @@
 @extends('user.cover')
 @section('content')
+<style>
+    /* CSS for the loading state */
+    #submitButton.loading {
+        background-color: red; /* Gray out the button */
+        cursor: not-allowed;   /* Change cursor to not-allowed */
+    }
+</style>
 	<div class="page-body">
         <div class="row">
             <div class="col-md-2 col-xl-4"></div>
@@ -24,7 +31,7 @@
                 <div class="card">
                     <div class="card-header text-center" style="box-shadow:0px 4px 8px 0px rgba(0, 0, 0, 0.2);">Manage your pasword <i class="fa fa-key"></i> </div>
                     <div class="card-body text-center">
-                        <form action="{{route('Post_Password')}}" method="POST">
+                        <form action="{{route('Post_Password')}}" method="POST" id="myForm">
                         @csrf            
                             <div class="input-group mb-3">        
                                 <input name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" placeholder="Old Password" value="{{old('old_password')}}" id="old_pswdid1">
@@ -55,7 +62,7 @@
                                 </span>
                             </div>
                                     
-                            <button class="btn btn-primary" type="submit" name="submit" style="border-radius:10px;"><i class="fa fa-save"></i>&nbsp; Save chenge</button>
+                            <button class="btn btn-primary" type="submit" name="submit" style="border-radius:10px;" id="submitButton"><i class="fa fa-save"></i>&nbsp; Save chenge</button>
                         </form>
 
                     </div>
@@ -66,6 +73,31 @@
     </div>
 
      <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('myForm');
+            const submitButton = document.getElementById('submitButton');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent the form from submitting
+
+                // Add loading state
+                submitButton.disabled = true;    // Disable the button
+                submitButton.innerText = 'Loading...'; // Change the button text
+                submitButton.classList.add('loading'); // Add loading class (optional)
+
+                // Perform your asynchronous task here (e.g., AJAX request)
+                // Once the task is complete, you can reset the button's state
+                // Example:
+                setTimeout(function () {
+                    // Reset the button state
+                    submitButton.disabled = false;
+                    submitButton.innerText = 'Submit';
+                    submitButton.classList.remove('loading'); // Remove loading class (optional)
+                }, 2000); // Simulate a 2-second loading delay (replace with your actual task)
+            });
+        });
+
         //old_password hiding/show
         function old_ShowPswdFn1(){
           var x=document.getElementById('old_pswdid1');

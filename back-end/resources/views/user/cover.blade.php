@@ -26,6 +26,41 @@
       <link rel="stylesheet" type="text/css" href="../assets/css/jquery.mCustomScrollbar.css">
       <!-- Notification.css -->
     <!-- <link rel="stylesheet" type="text/css" href="../assets/pages/notification/notification.css"> -->
+    <style>
+    div#online-indicator_header {
+/*       display: inline-block;*/
+        position: absolute;
+        z-index:20;
+        width: 12px;
+        height: 12px;
+        margin-right:10px;
+        margin-left: 48px;
+        background-color:skyblue;
+        border-radius: 50%;
+        position: absolute;
+        margin-top: -25px;
+      }
+
+      div#online-indicator_header:hover{
+        cursor:alias;
+      }
+      span.blink_header {
+        display: block;
+        width: 12px;
+        height: 12px;
+        background-color:white;
+        opacity: 0.7;
+        border-radius: 50%;
+        animation: blink 1s linear infinite;
+      }
+
+      /*Animations*/
+      @keyframes blink {
+        100% { transform: scale(2, 2); 
+                opacity: 0;
+              }
+      }
+    </style>
   </head>
 
   <body>
@@ -91,8 +126,8 @@
                        <ul class="nav-right">
                            <li class="header-notification">
                                <a href="#!" style="display:flex;">
-                                   <p>Bookings</p>&nbsp;&nbsp;&nbsp;<span class="badge bg-c-pink">0</span>
-                                   <!-- <i class="ti-bell"></i> -->
+                                   <p>New Bookings</p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-light">0</span>
+                                   <!-- <i class="ti-bell"  class="badge bg-c-pink"></i> -->
                                </a>
                                <ul class="show-notification">
                                    <li>
@@ -103,6 +138,7 @@
                                        <div class="media">
                                             <a href="#customer1" class="d-flex">
                                                <img class="align-self-center img-radius" src="../assets/images/avatar-2.jpg" alt="Generic placeholder image">
+                                               <i class="badge bg-c-pink"></i>
                                                <div class="media-body">
                                                    <h5 class="notification-user">customer name</h5>
                                                    <p class="notification-msg">booking description</p>
@@ -129,6 +165,9 @@
                            <li class="user-profile header-notification">
                                <a href="#">
                                    <img src="../assets/images/{{auth()->guard('admin')->user()->image}}" class="img-radius" alt="User-Profile-Image" style="width:45px;height:45px;">
+                                    <div id='online-indicator_header' title='Online'>
+                                        <span class='blink_header'></span>
+                                    </div>
                                    <span>{{auth()->guard('admin')->user()->firstname}} {{auth()->guard('admin')->user()->lastname}}</span>
                                    <i class="ti-angle-down"></i>
                                </a>

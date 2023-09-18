@@ -1,5 +1,38 @@
 @extends('user.cover')
 @section('content')
+<style>
+  div#online-indicator_attendant {
+/*        display: inline-block;*/
+        position: absolute;
+        z-index:20;
+        width: 20px;
+        height: 20px;
+        margin-left:72px;
+        background-color:skyblue;
+        border-radius: 50%;
+        margin-top: 80px;
+      }
+
+      div#online-indicator_attendant:hover{
+        cursor:alias;
+      }
+      span.blink_attendant {
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-color:blue;
+        opacity: 0.7;
+        border-radius: 50%;
+        animation: blink 1s linear infinite;
+      }
+
+      /*Animations*/
+      @keyframes blink {
+        100% { transform: scale(2, 2); 
+                opacity: 0;
+              }
+      }
+</style>
 	<div class="page-body">
         <div class="row">
 
@@ -18,6 +51,9 @@
                     <div class="card-block">
                         <div class="usre-image">
                             <img src="../assets/images/{{auth()->guard('admin')->user()->image}}" class="img-radius" alt="User-Profile-Image" style="width:100px;height:100px;">
+                            <div id='online-indicator_attendant' title='Online'>
+                                <span class='blink_attendant'></span>
+                            </div>
                         </div>
                         <h6 class="f-w-600 m-t-25 m-b-10">{{auth()->guard('admin')->user()->firstname}} {{auth()->guard('admin')->user()->lastname}}</h6>                                
                         <hr/>
