@@ -20,11 +20,9 @@
         z-index:20;
         width: 17px;
         height: 17px;
-        margin-right:10px;
-        margin-left: 172px;
+        margin-left:210px;
         background-color:skyblue;
         border-radius: 50%;
-        position: absolute;
         margin-top: -20px;
       }
 
@@ -56,9 +54,7 @@
 
             <div class="col-md-8 col-xl-8">
                 @if(session('success'))
-                  <script>toastr.success('Data inserted successfully !');</script>
-                    <!-- {{session('success')}} -->
-        
+                  <script>toastr.success('{{session("success")}}');</script>        
                 @endif
                 <div class="card">
                   <div class="card-header text-center" style="box-shadow:0 4px 8px 0 rgb(0, 0, 0, 0.2);"><h4><i class="fa fa-address-card"></i>&nbsp;My information</h4></div>
@@ -67,9 +63,9 @@
                     <div class="row">
                         <div class="col-md-6 text-center">
                             <img src="../assets/images/{{auth()->guard('admin')->user()->image}}" class="img-circle elevation-2" alt="User Image" style="width:100px;height:100px;border-radius:50%;border:1px solid skyblue;z-index: 1;display: relative;margin-top:5px; " onclick="window.location.href='{{route("Profile")}}'">
-                            <div id='online-indicator_attendant' title='Online'>
+                            <!-- <div id='online-indicator_attendant' title='Online'>
                                 <span class='blink_attendant'></span>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="col-sm-6">

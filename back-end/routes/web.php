@@ -43,4 +43,5 @@ Route::group(['prefix' => 'admin','middleware' => 'adminauth'], function () {
 	Route::post('Post_profile',[AdminController::class,'Post_Profile'])->name('Submit_Profile');
 	Route::get('password',[AdminController::class,'Password'])->name('Password');
 	Route::post('post_password',[AdminController::class,'Post_Password'])->name('Post_Password');
+	Route::get('add_properties',[AdminController::class,'Add_Properties'])->name('Add_Properties');
 });

@@ -34,7 +34,7 @@
         width: 12px;
         height: 12px;
         margin-right:10px;
-        margin-left: 48px;
+        margin-left: 4fv8px;
         background-color:skyblue;
         border-radius: 50%;
         position: absolute;
@@ -64,7 +64,6 @@
   </head>
 
   <body>
-
     <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="loader-track">
@@ -183,7 +182,7 @@
                        </ul>
                    </div>
                </div>
-           </nav>
+            </nav>
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar">
@@ -194,14 +193,14 @@
 
                             <!--Dashboard and manage pages-->
                             <ul class="pcoded-item pcoded-left-item">
-                                <li>
+                                <li class="{{ request()->is('admin/dashboard') ? 'active' : '' }}">
                                     <a href="#" onclick="window.location.href='{{route("AdminDashboard")}}'">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="pcoded-hasmenu">
+                                <li class="pcoded-hasmenu {{ request()->is('#') ? 'active' : '' }}">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Manage pages</span>
@@ -240,6 +239,36 @@
                                     </ul>
                                 </li>
                             </ul>
+
+                            <!--Adding Properties like cars -->
+                            <ul class="pcoded-item pcoded-left-item">
+                                
+                                <li class="pcoded-hasmenu {{ request()->is('admin/add_properties') ? 'active' : '' }}">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fas fa-car"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Manage cars</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="#" onclick="window.location.href='{{route("Add_Properties")}}'">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Cars</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="#">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Others</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        
+                                    </ul>
+                                </li>
+
+                            </ul>
                            
                             <!--Customer's comments and booking-->
                             <ul class="pcoded-item pcoded-left-item">
@@ -252,14 +281,14 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
-                                            <a href="auth-normal-sign-in.html">
+                                            <a href="#">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">View bookings</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class=" ">
-                                            <a href="auth-sign-up.html">
+                                            <a href="#">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">View comments</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -273,10 +302,10 @@
 
                             <!--manu of settings-->
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu ">
+                                <li class="pcoded-hasmenu {{request()->is('admin/information') ? 'active' : ''}} {{request()->is('admin/profile') ? 'active' : ''}} {{request()->is('admin/password') ? 'active' : ''}}">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fa fa-cogs"></i><b>M</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Settings</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.main" onclick="main_linkfn()" id="main_link">Settings</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
@@ -312,13 +341,13 @@
                             <div class="main-body">
                                 <div class="page-wrapper">
                                     
-                                    <section>
+                                    <!-- <section> -->
                                         <main>
                                             @yield('content')
                                         </main>
-                                    </section>
+                                    <!-- </section> -->
 
-                                    <div id="styleSelector"></div>
+                                    <!-- <div id="styleSelector"></div> -->
 
 
                                    <!--start of Logout modal -->
@@ -346,9 +375,18 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
+
+    <script>
+        function main_linkfn(){
+            var textElement = document.getElementById("main_link");
+            textElement.style.display = textElement.style.display === "none" ? "block" : "none";
+        }
+    </script>
 
     <!-- Warning Section Ends -->
     <!-- Required Jquery -->
