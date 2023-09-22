@@ -44,4 +44,6 @@ Route::group(['prefix' => 'admin','middleware' => 'adminauth'], function () {
 	Route::get('password',[AdminController::class,'Password'])->name('Password');
 	Route::post('post_password',[AdminController::class,'Post_Password'])->name('Post_Password');
 	Route::get('add_properties',[AdminController::class,'Add_Properties'])->name('Add_Properties');
+	Route::post('post_new_car',[AdminController::class,'Post_new_car'])->name('Post_New_Car');
+	Route::get('manage_car',[AdminController::class,'Manage_cars_from_store'])->name('Manage_cars_from_store');
 });

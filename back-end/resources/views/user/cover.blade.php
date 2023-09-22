@@ -363,7 +363,7 @@
                                               <div class="actionsBtns">
                                                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                                   <a href="#" class="btn btn-primary" onclick="event.preventDefault();document.getElementById('logout-form').submit();"  style="border-radius:10px;"><i class="fa fa-lock"></i> Yes</a>&nbsp;&nbsp;&nbsp;
-                                                  <button class="btn btn-danger" data-dismiss="modal" style="border-radius:10px;"><i class="fa fa-times"></i> No</button>
+                                                  <button class="btn btn-danger" data-dismiss="modal" style="border-radius:10px;"><i class="fa fa-times"></i> Not now</button>
                                               </div>
                                             </div>
                                           </div>
@@ -384,7 +384,7 @@
     <script>
         function main_linkfn(){
             var textElement = document.getElementById("main_link");
-            textElement.style.display = textElement.style.display === "none" ? "block" : "none";
+            textElement.style.display = textElement.style.display === "block" ? "none" : "block";
         }
     </script>
 

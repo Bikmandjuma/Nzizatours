@@ -9,6 +9,7 @@ use App\Models\Tasker;
 use App\Models\aboutus;
 use App\Models\Es;
 use App\Models\Servicetb;
+use App\Models\Car;
 
 use Validator;
 
@@ -89,6 +90,35 @@ class AdminController extends Controller
     //adding properties like cars
     public function Add_Properties(){
         return view('user.properties');
+    }
+
+    public function Post_new_car(Request $request){
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'period' => 'required|string',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif',
+            'plate' => 'required|string',
+            'counts' => 'required|numeric',
+        ]);
+
+        $data =new Car;
+        $data->name = $request->name;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        $data->counts = $request->counts;
+        $data->plate = $request->plate;
+        $data->period = $request->period;
+        if($request->hasFile('image')){
+            $file= $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $extenstion = $file->getClientOriginalExtension();
+            $file-> move(public_path('assets/images/admin/car'), $filename);
+            $data['image']= $filename;
+        }
+        $data->save();
+        return redirect()->back()->with('success','data inserted successfully !');
     }
 
 }
